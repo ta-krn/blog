@@ -1,0 +1,7 @@
+<h1><%= @article.id %></h1>
+
+<p><%= @article.content %></p>
+
+<%= link_to '記事一覧に戻る', articles_path %>
+<%= link_to 'この記事を編集する', edit_article_path(@article) %>
+<%= link_to 'このメッセージを削除する', @message, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>

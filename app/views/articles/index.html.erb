@@ -1,0 +1,9 @@
+<h1>ブログタイトル</h1>
+
+<ul>
+  <% @articles.each do |article| %>
+    <li><%= link_to article.id, article %> / <%= article.content %></li>
+  <% end %>
+</ul>
+
+<%= link_to '新規投稿', new_article_path %>
