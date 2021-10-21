@@ -1,8 +1,24 @@
 <%= form_with(model: article) do |f| %>
-  <%= f.label :string, 'タイトル' %>
-  <%= f.text_field :string %>
-  <%= f.label :content, '本文' %>
-  <%= f.text_field :content %>
+  <% if article.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% article.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <p>
+    <%= f.label :string, 'タイトル' %><br>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :content, '本文' %><br>
+    <%= f.text_area :content %>
+  </p>
 
+  <p>
   <%= f.submit '投稿' %>
+  </p>
 <% end %>

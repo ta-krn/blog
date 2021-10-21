@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destory]
+  before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   def index
     @articles = Article.all
@@ -13,13 +13,13 @@ class ArticlesController < ApplicationController
   end
   
   def create
-    @article = article.new(article_params)
+    @article = Article.new(article_params)
 
     if @article.save
-      flash[:success] = 'Article が正常に投稿されました'
+      flash[:success] = '正常に投稿されました'
       redirect_to @article
     else
-      flash.now[:danger] = 'Article が投稿されませんでした'
+      flash.now[:danger] = '投稿されませんでした'
       render :new
     end
   end
@@ -29,18 +29,18 @@ class ArticlesController < ApplicationController
   
   def update
     if @article.update(article_params)
-      flash[:success] = 'Article は正常に更新されました'
+      flash[:success] = '正常に更新されました'
       redirect_to @article
     else
-      flash.now[:danger] = 'Article は更新されませんでした'
+      flash.now[:danger] = '更新されませんでした'
       render :edit
     end
   end
   
-  def destory
+  def destroy
     @article.destroy
 
-    flash[:success] = 'Article は正常に削除されました'
+    flash[:success] = '正常に削除されました'
     redirect_to articles_url
   end
   
@@ -52,6 +52,6 @@ class ArticlesController < ApplicationController
 
   # Strong Parameter
   def article_params
-    params.require(:article).permit(:content)
+    params.require(:article).permit(:title, :content)
   end
 end
