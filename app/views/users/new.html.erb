@@ -1,29 +1,30 @@
-<h1>Sign up</h1>
+<h1>会員登録</h1>
 
   <%= form_with(model: @user) do |f| %>
     <%= render 'layouts/error_messages', model: f.object %>
     
       <div>
-        <%= f.label :name, 'Name' %>
-        <%= f.text_field :name, class: 'form-control' %>
+        <%= f.label :name, 'ユーザーネーム' %>
+        <%= f.text_field :name %>
       </div>
 
       <div>
-        <%= f.label :email, 'Email' %>
-        <%= f.email_field :email, class: 'form-control' %>
+        <%= f.label :email, 'メールアドレス' %>
+        <%= f.email_field :email %>
       </div>
 
       <div>
-        <%= f.label :password, 'Password' %>
-        <%= f.password_field :password, class: 'form-control' %>
+        <%= f.label :password, 'パスワード' %>
+        <%= f.password_field :password %>
       </div>
 
       <div>
-        <%= f.label :password_confirmation, 'Confirmation' %>
-        <%= f.password_field :password_confirmation, class: 'form-control' %>
+        <%= f.label :password_confirmation, 'パスワード(確認)' %>
+        <%= f.password_field :password_confirmation %>
       </div>
 
-      <%= f.submit 'Sign up' %>
-    <% end %>
+      <%= f.submit '登録する' %>
+    <% end %><br>
     
-<p><%= link_to '記事一覧に戻る', articles_path %></p>
+<%= link_to '記事一覧に戻る', articles_path %>
+<%= link_to 'ログイン', login_path %>
