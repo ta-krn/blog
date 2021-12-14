@@ -4,4 +4,6 @@ class User < ApplicationRecord
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
                     uniqueness: true
   has_secure_password
+  
+  has_many :articles
 end

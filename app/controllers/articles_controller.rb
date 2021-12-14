@@ -14,12 +14,13 @@ class ArticlesController < ApplicationController
   end
   
   def create
-    @article = Article.new(article_params)
+    @article = current_user.articles.build(article_params)
 
     if @article.save
       flash[:success] = '正常に投稿されました'
       redirect_to @article
     else
+      @pagy,@articles = pagy(current_user.articles.order(id: :desc))
       flash.now[:danger] = '投稿されませんでした'
       render :new
     end
@@ -54,5 +55,12 @@ class ArticlesController < ApplicationController
   # Strong Parameter
   def article_params
     params.require(:article).permit(:title, :content)
+  end
+  
+   def correct_user
+    @article = current_user.articles.find_by(id: params[:id])
+    unless @article
+      redirect_to root_url
+    end
   end
 end
