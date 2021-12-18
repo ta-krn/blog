@@ -4,5 +4,8 @@
 <p><%= @article.created_at.to_s(:datetime_jp) %></p>
 
 <%= link_to '記事一覧に戻る', articles_path %>
+
+<% if logged_in? && current_user.id == @article.user_id %>
 <%= link_to 'この記事を編集する', edit_article_path(@article) %>
 <%= link_to 'この記事を削除する', @article, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
+<% end %>

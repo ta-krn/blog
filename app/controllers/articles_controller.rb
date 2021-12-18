@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :require_user_logged_in, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:update, :destroy]
 
   def index
     @pagy, @articles = pagy(Article.all, items: 3)
@@ -60,7 +61,8 @@ class ArticlesController < ApplicationController
    def correct_user
     @article = current_user.articles.find_by(id: params[:id])
     unless @article
+      flash[:notice] = '権限がありません'
       redirect_to root_url
     end
-  end
+   end
 end
