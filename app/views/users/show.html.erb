@@ -1,5 +1,9 @@
 <h3><%= @user.name %></h3>
-
+<%= render 'relationships/follow_button', user: @user %>
+  <ul>
+    <li><a href="<%= followings_user_path(@user) %>">フォロー  <span><%= @count_followings %></span></a></li>
+    <li><a href="<%= followers_user_path(@user) %>">フォロワー  <span><%= @count_followers %></span></a></li>
+  </ul>
 
 <h1>ブログタイトル</h1>
 

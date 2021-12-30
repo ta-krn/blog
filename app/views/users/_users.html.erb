@@ -1,0 +1,13 @@
+<% if users.any? %>
+  <ul>
+    <% users.each do |user| %>
+      <li>
+        <%= link_to user.name, user_path(user) %>
+        <%= render 'relationships/follow_button', user: @user %>
+      </li>
+    <% end %>
+  </ul>
+  <%== pagy_nav(@pagy) %>
+<% end %>
+
+<%= link_to 'ホーム', user_path(current_user) %>

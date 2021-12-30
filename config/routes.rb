@@ -1,12 +1,20 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get 'relationships/create'
+  get 'relationships/destroy'
+  root to: 'articles#index'
+  
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   
   get 'signup', to: 'users#new'
-  resources :users, only: [:index, :show, :new, :create]
+  resources :users, only: [:index, :show, :new, :create] do
+    member do
+      get :followings
+      get :followers
+    end
+  end
   
-  root to: 'articles#index'
   resources :articles
+  resources :relationships, only: [:create, :destroy]
 end
