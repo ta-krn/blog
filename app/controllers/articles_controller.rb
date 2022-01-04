@@ -42,9 +42,8 @@ class ArticlesController < ApplicationController
   
   def destroy
     @article.destroy
-
     flash[:success] = '正常に削除されました'
-    redirect_to articles_url
+    redirect_to controller: :users, action: :show, id: current_user.id
   end
   
   private

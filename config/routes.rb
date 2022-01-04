@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'relationships/create'
-  get 'relationships/destroy'
   root to: 'articles#index'
   
   get 'login', to: 'sessions#new'
@@ -12,9 +10,11 @@ Rails.application.routes.draw do
     member do
       get :followings
       get :followers
+      get :like_articles
     end
   end
   
   resources :articles
   resources :relationships, only: [:create, :destroy]
+  resources :likes, only: [:create, :destroy]
 end

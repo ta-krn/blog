@@ -1,0 +1,11 @@
+<% if current_user.like_articles?(article) %>
+  <%= form_with(model: current_user.likes.find_by(article_id: article.id), method: :delete) do |f| %>
+    <%= hidden_field_tag :article_id, article.id %>
+    <%= f.submit 'いいね！解除' %>
+  <% end %>
+<% else %>
+  <%= form_with(model: current_user.likes.build) do |f| %>
+    <%= hidden_field_tag :article_id, article.id %>
+    <%= f.submit 'いいね！' %>
+  <% end %>
+<% end %>

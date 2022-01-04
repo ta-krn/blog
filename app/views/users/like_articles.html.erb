@@ -1,0 +1,10 @@
+<h3><%= @user.name %>のいいね一覧</h3>
+  <ul>
+    <% @user.likes.each do |like| %>
+    <li><% article = Article.find_by(id: like.article_id) %></li>
+    <%= link_to article.title, article_path(article.id) %> / <%= article.content %>
+    <% end %>
+  </ul>
+  <%== pagy_nav(@pagy) %>
+
+<%= link_to 'ホーム', user_path(current_user) %>
