@@ -8,6 +8,7 @@ class ArticlesController < ApplicationController
   end
   
   def show
+    @article_tags = @article.tags
   end
   
   def new
@@ -16,7 +17,8 @@ class ArticlesController < ApplicationController
   
   def create
     @article = current_user.articles.build(article_params)
-
+    tag_list = params[:article][:tag_names].split(nil)
+    @article.tags_save(tag_list)
     if @article.save
       flash[:success] = '正常に投稿されました'
       redirect_to @article
@@ -28,10 +30,13 @@ class ArticlesController < ApplicationController
   end
   
   def edit
+    @tag_list =@article.tags.pluck(:tag_name).join(nil)
   end
   
   def update
+    tag_list = params[:article][:tag_names].split(nil)
     if @article.update(article_params)
+      @article.tags_save(tag_list)
       flash[:success] = '正常に更新されました'
       redirect_to @article
     else
@@ -44,6 +49,12 @@ class ArticlesController < ApplicationController
     @article.destroy
     flash[:success] = '正常に削除されました'
     redirect_to controller: :users, action: :show, id: current_user.id
+  end
+  
+  def search
+    @tag_list = Tag.all
+    @tag = Tag.find(params[:tag_id])
+    @pagy, @articles = pagy(@tag.articles.all, items: 10)
   end
   
   private

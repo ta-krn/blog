@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_30_061538) do
+ActiveRecord::Schema.define(version: 2022_01_04_051502) do
+
+  create_table "article_tags", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "article_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id", "tag_id"], name: "index_article_tags_on_article_id_and_tag_id", unique: true
+    t.index ["article_id"], name: "index_article_tags_on_article_id"
+    t.index ["tag_id"], name: "index_article_tags_on_tag_id"
+  end
 
   create_table "articles", charset: "utf8mb4", force: :cascade do |t|
     t.string "title"
@@ -41,6 +51,12 @@ ActiveRecord::Schema.define(version: 2021_12_30_061538) do
     t.index ["user_id"], name: "index_relationships_on_user_id"
   end
 
+  create_table "tags", charset: "utf8mb4", force: :cascade do |t|
+    t.string "tag_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -49,6 +65,8 @@ ActiveRecord::Schema.define(version: 2021_12_30_061538) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "article_tags", "articles"
+  add_foreign_key "article_tags", "tags"
   add_foreign_key "likes", "articles"
   add_foreign_key "likes", "users"
   add_foreign_key "relationships", "users"

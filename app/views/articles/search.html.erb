@@ -1,0 +1,9 @@
+<h2>＃<%= "#{@tag.tag_name}" %></h2>
+
+<ul>
+  <% @articles.each do |article| %>
+    <li><%= link_to article.title, article_path(article.id) %> / <%= link_to article.user.name, user_path(current_user.id) %></li>
+  <% end %>
+</ul>
+<%== pagy_nav(@pagy) %>
+<%= link_to 'ホーム', user_path(current_user) %>
