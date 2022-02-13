@@ -1,16 +1,7 @@
-<% if logged_in? %>
-  <p>ログインユーザ: <%= link_to current_user.name, user_path(current_user) %></p>
-<% end %>
-
-<h1>ブログタイトル</h1>
-
+<h1>新着記事</h1>
 <ul>
   <% @articles.each do |article| %>
     <li><%= link_to article.title, article_path(article.id) %> / <%= article.content %></li>
   <% end %>
 </ul>
 <%== pagy_nav(@pagy) %>
-
-<%= link_to '新規投稿', new_article_path %>
-<%= link_to '会員登録', signup_path %>
-<%= link_to 'ログイン', login_path %><br>

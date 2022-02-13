@@ -13,3 +13,40 @@
  *= require_tree .
  *= require_self
  */
+ 
+ @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+ 
+ body {
+   color: #2b3e4f;
+ }
+ 
+ a {
+   color: #2b3e4f;
+ }
+ 
+ a:hover {
+   color: inherit;
+ }
+ 
+ .navbar {
+   background-color: #17b67b;
+ }
+ 
+ .navbar-brand {
+   font-family: 'Comfortaa', serif;
+   font-weight: bold;
+   color: #2b3e4f;
+ }
+ 
+ button .btn {
+   background-color: #17b67b;
+   color: #fff;
+ }
+ 
+ .nav-link {
+   color: #2b3e4f;
+ }
+ 
+ .nav-link:hover {
+   color: inherit;
+ }

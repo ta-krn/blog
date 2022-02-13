@@ -4,7 +4,9 @@ class ArticlesController < ApplicationController
   before_action :correct_user, only: [:update, :destroy]
 
   def index
-    @pagy, @articles = pagy(Article.all, items: 3)
+    @q = Article.ransack(params[:q])
+    @articles = @q.result(distinct: true)
+    @pagy, @articles = pagy(Article.all.order(created_at: :desc), items: 3)
   end
   
   def show

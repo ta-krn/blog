@@ -6,16 +6,9 @@
     <li><a href="<%= like_articles_user_path(@user) %>">いいね  <span><%= @count_like_articles %></span></a></li>
   </ul>
 
-<h1>ブログタイトル</h1>
-
-<ul>
-  <% @user.articles.each do |article| %>
-    <li><%= link_to article.title, article_path(article.id) %> / <%= article.content %></li>
-  <% end %>
-</ul>
-<!--%== pagy_nav(@pagy) %-->
-
   <ul>
-    <li><%= link_to '新規投稿', new_article_path %></li>
-    <li><%= link_to 'ログアウト', logout_path, method: :delete %></li>
+    <% @user.articles.each do |article| %>
+      <li><%= link_to article.title, article_path(article.id) %> / <%= article.content %></li>
+    <% end %>
   </ul>
+  <%== pagy_nav(@pagy) %>
