@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
   def index
     @q = Article.ransack(params[:q])
     @articles = @q.result(distinct: true)
-    @pagy, @articles = pagy(Article.all.order(created_at: :desc), items: 3)
+    @pagy, @articles = pagy(Article.all.order(created_at: :desc), items: 5)
   end
   
   def show
@@ -19,10 +19,10 @@ class ArticlesController < ApplicationController
   
   def create
     @article = current_user.articles.build(article_params)
-    tag_list = params[:article][:tag_names].split(nil)
+    tag_list = params[:article][:tag_names].split(/\s+|　/)
     @article.tags_save(tag_list)
     if @article.save
-      flash[:success] = '正常に投稿されました'
+      flash[:success] = '投稿されました'
       redirect_to @article
     else
       @pagy,@articles = pagy(current_user.articles.order(id: :desc))
@@ -39,7 +39,7 @@ class ArticlesController < ApplicationController
     tag_list = params[:article][:tag_names].split(nil)
     if @article.update(article_params)
       @article.tags_save(tag_list)
-      flash[:success] = '正常に更新されました'
+      flash[:success] = '更新されました'
       redirect_to @article
     else
       flash.now[:danger] = '更新されませんでした'
@@ -49,7 +49,7 @@ class ArticlesController < ApplicationController
   
   def destroy
     @article.destroy
-    flash[:success] = '正常に削除されました'
+    flash[:success] = '削除しました'
     redirect_to controller: :users, action: :show, id: current_user.id
   end
   

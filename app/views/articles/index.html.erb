@@ -1,7 +1,12 @@
-<h1>新着記事</h1>
-<ul>
-  <% @articles.each do |article| %>
-    <li><%= link_to article.title, article_path(article.id) %> / <%= article.content %></li>
-  <% end %>
-</ul>
+<h1 class="mb-3">新着記事</h1>
+<div class="timeline d-inline-flex">
+  <!--<div class="row">-->
+    <% @articles.each do |article| %>
+      <div class="col-lg-4">
+        <p class="title"><%= link_to article.title, article_path(article.id) %></p>
+        <%= link_to article.user.name, user_path(article.user) %>
+      </div>
+    <% end %>
+  <!--</div>-->
+</div>
 <%== pagy_nav(@pagy) %>
