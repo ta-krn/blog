@@ -21,11 +21,15 @@
  }
  
  a {
-   color: darkgray;
+   color: #2b3e4f;
  }
  
  a:hover {
    color: inherit;
+ }
+ 
+ .navbar {
+   background-color: #17b67b;
  }
  
  .navbar-brand {
@@ -45,12 +49,4 @@
  
  .nav-link:hover {
    color: inherit;
- }
- 
- .error_message {
-  color: red;
- }
- 
- li {
-  list-style: none;
  }
