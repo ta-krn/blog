@@ -17,5 +17,6 @@ Rails.application.routes.draw do
   resources :articles
   resources :relationships, only: [:create, :destroy]
   resources :likes, only: [:create, :destroy]
+  get 'search_tag', to: 'articles#search_tag'
   get 'search', to: 'articles#search'
 end

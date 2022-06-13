@@ -2,7 +2,7 @@ class Article < ApplicationRecord
   belongs_to :user
   has_many :likes, dependent: :destroy
   has_many :like_articles, through: :likes, source: :article
-  has_many :article_tags
+  has_many :article_tags, dependent: :destroy
   has_many :tags, through: :article_tags
   
   validates :title, presence: true, length: { maximum: 255 }
@@ -18,5 +18,10 @@ class Article < ApplicationRecord
       inspected_tag = Tag.where(tag_name: tag).first_or_create
       self.tags << inspected_tag
     end
+  end
+  
+  def self.search(tag_name)
+    # return Article.all unless search
+    Article.where(['tag_name LIKE ?', "%#{search}%"])
   end
 end

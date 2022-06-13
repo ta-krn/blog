@@ -38,6 +38,7 @@ class User < ApplicationRecord
   end
   
   def like_articles?(article)
+    p "===========#{self.like_articles.include?(article)}==========="
     self.like_articles.include?(article)
   end
 end

@@ -1,15 +1,25 @@
-<h1><%= @article.title %></h1>
+<h2 class="mb-5 d-inline-block"><%= @article.title %></h2>
+  <span id="likes_button">
+    <%= render 'likes/like_button', article: @article %>
+  </span>
 
-<p><%= @article.content %></p><br>
-   <% @article_tags.each do |tag| %>
-      <%= link_to tag.tag_name, search_path(tag_id: tag.id) %>
-   <% end %>
-<p><%= @article.created_at.to_s(:datetime_jp) %></p>
+  <div class="content mb-5">
+    <%= simple_format(@article.content) %>
+  </div>
+  <div class="tag mb-2">
+    <% @article_tags.each do |tag| %>
+      <%= link_to tag.tag_name, search_tag_path(tag_id: tag.id) %>
+    <% end %>
+  </div>
+    <%= @article.created_at.to_s(:datetime_jp) %>
 
-<%= render 'likes/like_button', article: @article %>
-<%= link_to '記事一覧に戻る', user_path(current_user) %>
-
-<% if logged_in? && current_user.id == @article.user_id %>
-<%= link_to 'この記事を編集する', edit_article_path(@article) %>
-<%= link_to 'この記事を削除する', @article, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
-<% end %>
+  <div class="d-inline-block">
+    <% if logged_in? && current_user.id == @article.user_id %>
+      <%= link_to edit_article_path(@article) do %>
+        <span class="fa-solid fa-pen"></span>
+      <% end %>
+      <%= link_to @article, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } do %>
+        <span class="fa-solid fa-trash-can"></span>
+      <% end %>
+    <% end %>
+  </div>

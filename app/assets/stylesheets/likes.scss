@@ -1,3 +1,21 @@
 // Place all the styles related to the likes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+// いいねボタン
+.like-button {
+  border: none;
+  color: darkgray;
+  background: transparent;
+}
+
+.like-button:hover {
+  color: #ff2146;
+}
+
+// いいね解除ボタン
+.unlike-button {
+  border: none;
+  color: #ff2146;
+  background: transparent;
+}

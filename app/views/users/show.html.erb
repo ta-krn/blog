@@ -6,6 +6,10 @@
     <li><a href="<%= like_articles_user_path(@user) %>">いいね  <span><%= @count_like_articles %></span></a></li>
   </ul>
 
+  <div class="user-icon">
+    <span class="fa-solid fa-circle-user fa-4x"></span>
+  </div>
+
   <ul>
     <% @user.articles.each do |article| %>
       <li><%= link_to article.title, article_path(article.id) %> / <%= article.content %></li>

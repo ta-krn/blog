@@ -32,7 +32,7 @@ class ArticlesController < ApplicationController
   end
   
   def edit
-    @tag_list =@article.tags.pluck(:tag_name).join(nil)
+    @tag_list = @article.tags.pluck(:tag_name).join(nil)
   end
   
   def update
@@ -53,10 +53,16 @@ class ArticlesController < ApplicationController
     redirect_to controller: :users, action: :show, id: current_user.id
   end
   
-  def search
+  def search_tag
     @tag_list = Tag.all
     @tag = Tag.find(params[:tag_id])
     @pagy, @articles = pagy(@tag.articles.all, items: 10)
+  end
+  
+  def search
+    @articles = Article.search(params[:tag_name])
+    @tag_name = params[:tag_name]
+    # render "index"
   end
   
   private
