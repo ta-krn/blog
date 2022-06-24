@@ -1,14 +1,19 @@
-<h1>新着記事</h1>
-<ul>
-  <% @articles.each do |article| %>
-    <li><%= link_to article.title, article_path(article.id) %> / <%= article.content %></li>
-  <% end %>
-</ul>
+<h1 class="mb-3">新着記事</h1>
+<div class="timeline d-inline-flex">
+  <!--<div class="row">-->
+    <% @articles.each do |article| %>
+      <div class="col-lg-4">
+        <p class="title"><%= link_to article.title, article_path(article.id) %></p>
+        <%= link_to article.user.name, user_path(article.user) %>
+      </div>
+    <% end %>
+  <!--</div>-->
+</div>
 <%== pagy_nav(@pagy) %>
 
 <div class="search-form">
-  <%= form_with url: search_path, method: :get, local: true do |f| %>
-    <%= f.text_field :tag_name, value: @tag_name %>
+  <%= search_form_for @q, url: search_path do |f| %>
+    <%= f.search_field :tag_name_cont, placeholder:'タグ検索' %>
     <%= f.submit "検索" %>
   <% end %>
 </div>

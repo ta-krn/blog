@@ -1,29 +1,33 @@
-<h1>会員登録</h1>
-
+<div class="signup">
   <%= form_with(model: @user) do |f| %>
     <%= render 'layouts/error_messages', model: f.object %>
     
-      <div>
-        <%= f.label :name, 'ユーザーネーム' %>
-        <%= f.text_field :name %>
-      </div>
+      <p>
+        <!--<%= f.label :name, 'ユーザーネーム' %><br>-->
+        <%= f.text_field :name, placeholder:"ユーザーネーム", class: "textfield" %>
+      </p>
 
-      <div>
-        <%= f.label :email, 'メールアドレス' %>
-        <%= f.email_field :email %>
-      </div>
+      <p>
+        <!--<%= f.label :email, 'メールアドレス' %><br>-->
+        <%= f.email_field :email, placeholder:"メールアドレス", class: "textfield" %>
+      </p>
 
-      <div>
-        <%= f.label :password, 'パスワード' %>
-        <%= f.password_field :password %>
-      </div>
+      <p>
+        <!--<%= f.label :password, 'パスワード' %><br>-->
+        <%= f.password_field :password, placeholder:"パスワード", class: "textfield" %>
+      </p>
 
-      <div>
-        <%= f.label :password_confirmation, 'パスワード(確認)' %>
-        <%= f.password_field :password_confirmation %>
-      </div>
+      <p>
+        <!--<%= f.label :password_confirmation, 'パスワード（確認）' %><br>-->
+        <%= f.password_field :password_confirmation, placeholder:"パスワード（確認）", class: "textfield" %>
+      </p>
 
-      <%= f.submit '登録する' %>
-    <% end %><br>
+      <p>
+        <%= f.submit 'アカウント作成', class: "signup-button" %>
+      </p>
+  <% end %>
     
-<%= link_to 'ログイン', login_path %>
+      <p>
+        すでにアカウントをお持ちの方は<%= link_to 'こちら', login_path %>
+      </p>
+</div>

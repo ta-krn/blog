@@ -1,18 +1,20 @@
-<h3><%= @user.name %></h3>
-<%= render 'relationships/follow_button', user: @user %>
-  <ul>
-    <li><a href="<%= followings_user_path(@user) %>">フォロー  <span><%= @count_followings %></span></a></li>
-    <li><a href="<%= followers_user_path(@user) %>">フォロワー  <span><%= @count_followers %></span></a></li>
-    <li><a href="<%= like_articles_user_path(@user) %>">いいね  <span><%= @count_like_articles %></span></a></li>
-  </ul>
+<div class="user-icon">
+  <span class="fa-solid fa-circle-user fa-4x"></span>
+</div>
 
-  <div class="user-icon">
-    <span class="fa-solid fa-circle-user fa-4x"></span>
+<h3 class="d-inline-block"><%= @user.name %></h3>
+  <div class="d-inline-block">
+    <%= render 'relationships/follow_button', user: @user %>
   </div>
+    <div>
+      <span><%= @count_followings %></span><a href="<%= followings_user_path(@user) %>">  フォロー</a>
+      <span><%= @count_followers %></span><a href="<%= followers_user_path(@user) %>">  フォロワー</a>
+      <span><%= @count_like_articles %></span><a href="<%= like_articles_user_path(@user) %>">  いいね</a>
+    </div>
 
   <ul>
-    <% @user.articles.each do |article| %>
-      <li><%= link_to article.title, article_path(article.id) %> / <%= article.content %></li>
+    <% @articles.each do |article| %>
+      <li><%= link_to article.title, article_path(article.id) %> / <%= link_to article.user.name, user_path(article.user) %></li>
     <% end %>
   </ul>
   <%== pagy_nav(@pagy) %>

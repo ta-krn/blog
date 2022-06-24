@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @pagy, @articles = pagy(@user.articles.order(id: :desc))
+    @pagy, @articles = pagy(@user.articles.order(created_at: :desc), items:5)
     counts(@user)
   end
   
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
 
   def like_articles
     @user = User.find(params[:id])
-    @pagy, @like_articles = pagy(@user.like_articles)
+    @pagy, @like_articles = pagy(@user.like_articles.order(created_at: :asc), items:5)
     counts(@user)
   end
   

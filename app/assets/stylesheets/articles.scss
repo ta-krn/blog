@@ -2,18 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-li {
-  list-style: none;
-}
-
 // 投稿ボタン
 .post-button {
   appearance: none;
   background-color: #fff;
-  border: 2px solid #17b67b;
+  border: 2px solid #2b3e4f;
   border-radius: 50px;
   box-sizing: border-box;
-  color: #17b67b;
+  color: #2b3e4f;
   cursor: pointer;
   display: inline-block;
   font-family: serif;
@@ -41,13 +37,14 @@ li {
 
 .post-button:hover {
   color: #fff;
-  background-color: #17b67b;
+  background-color: #2b3e4f;
 }
 
 .post-button:active {
   transform: translateY(0);
 }
 
+// 新規投稿フォーム
 .text-title {
   border: none;
   resize: none;
@@ -62,6 +59,7 @@ li {
   resize: none;
   outline: none;
   width: 100%;
+  height: 500px;
 }
 
 .text-tag {
@@ -73,4 +71,16 @@ li {
 
 h1 {
   margin-bottom: 30px;
+}
+
+.title {
+  font-weight: bold;
+}
+
+
+.timeline div {
+  margin: 0 10px; 
+  padding: 0 10px;
+  border: solid 1px darkgray;
+  border-radius: 5px;
 }

@@ -21,16 +21,17 @@
  }
  
  a {
-   color: #2b3e4f;
+   color: darkgray;
  }
  
  a:hover {
    color: inherit;
  }
  
- .navbar {
-   background-color: #17b67b;
+/* .navbar {
+   background-color: #2b3e4f;
  }
+*/
  
  .navbar-brand {
    font-family: 'Comfortaa', serif;
@@ -49,4 +50,12 @@
  
  .nav-link:hover {
    color: inherit;
+ }
+ 
+ li {
+  list-style: none;
+}
+
+.error_message {
+  color: red;
  }

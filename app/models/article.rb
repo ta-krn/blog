@@ -20,8 +20,8 @@ class Article < ApplicationRecord
     end
   end
   
-  def self.search(tag_name)
+  # def self.search(search)
     # return Article.all unless search
-    Article.where(['tag_name LIKE ?', "%#{search}%"])
-  end
+    # Article.where(['tag_name LIKE ?', "%#{search}%"])
+  # end
 end
