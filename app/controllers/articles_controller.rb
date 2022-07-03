@@ -5,8 +5,8 @@ class ArticlesController < ApplicationController
   # before_action :set_q, only: [:index, :search]
 
   def index
-    # @q = Tag.includes(:articles).ransack(params[:q])
-    @q = Article.includes(:tags).ransack(params[:q])
+    @q = Tag.includes(:articles).ransack(params[:q])
+    # @q = Article.includes(:tags).ransack(params[:q])
     @result = @q.result
     @pagy, @articles = pagy(Article.all.order(created_at: :desc), items: 3)
   end
@@ -62,9 +62,11 @@ class ArticlesController < ApplicationController
   end
   
   def search
-    @q = Article.includes(:tags).ransack(params[:q])
-    # @q = Tag.includes(:articles).ransack(params[:q])
+    # @q = Article.includes(:tags).ransack(params[:q])
+    @q = Tag.includes(:articles).ransack(params[:q])
     @result = @q.result
+    p "====================#{Tag.where(tag_name: "7/3").first.articles.inspect}===================="
+    p "====================#{@result.articles.inspect}===================="
   end
   
   private
