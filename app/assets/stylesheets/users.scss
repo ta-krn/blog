@@ -82,3 +82,50 @@ span {
 .signup-button:active {
   transform: translateY(0);
 }
+
+.fa-pen {
+  border: none;
+  color: darkgray;
+}
+
+.fa-pen:hover {
+   color: inherit;
+ }
+ 
+ .modal-edit:focus {
+ box-shadow: none;
+}
+ 
+// ユーザー編集フォーム
+.rename-form {
+  border: none;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  color: #2b3e4f;
+}
+
+.rename-form:focus {
+  outline: none;
+}
+
+.edit-user-button {
+  border: 1px solid #2b3e4f;
+  border-radius: 50px;
+  color: #2b3e4f;
+  padding: 5px 24px;
+  background-color: #fff;
+}
+
+.edit-user-button:hover {
+  background-color: #2b3e4f;
+  color: #fff;
+}
+
+.close {
+  text-align: right;
+  margin: 2px 20px 0 0;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
