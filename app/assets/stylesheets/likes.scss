@@ -13,6 +13,17 @@
   color: #ff2146;
 }
 
+.like-button:active {
+  animation-name: hoge;
+  animation-duration: 0.1s;
+}
+
+@keyframes hoge {
+  50% {
+  transform: scale(1.2);
+  }
+}
+
 // いいね解除ボタン
 .unlike-button {
   border: none;
