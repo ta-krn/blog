@@ -7,6 +7,7 @@
   border: none;
   color: darkgray;
   background: transparent;
+  padding: 0;
 }
 
 .like-button:hover {
@@ -24,9 +25,14 @@
   }
 }
 
+#likes_button {
+  color: darkgray;
+}
+
 // いいね解除ボタン
 .unlike-button {
   border: none;
   color: #ff2146;
   background: transparent;
+  padding: 0;
 }

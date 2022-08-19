@@ -1,19 +1,26 @@
-<div class="d-inline-block">
-  <% if current_user.like_articles?(article) %>
-    <%= form_with(model: current_user.likes.find_by(article_id: article.id), method: :delete, local: false) do |f| %>
-      <%= hidden_field_tag :article_id, article.id %>
-      <%= button_tag :type => "submit", class: 'unlike-button' do %>
-        <span class="fa-solid fa-heart"></span>
-          <%= article.likes.count %>
+<% if logged_in? %>
+  <div class="d-inline-block">
+    <% if current_user.like_articles?(article) %>
+      <%= form_with(model: current_user.likes.find_by(article_id: article.id), method: :delete, local: false) do |f| %>
+        <%= hidden_field_tag :article_id, article.id %>
+        <%= button_tag :type => "submit", class: 'unlike-button' do %>
+          <span class="fa-solid fa-heart"></span>
+            <%= article.likes.count %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <%= form_with(model: current_user.likes.build, local: false) do |f| %>
+        <%= hidden_field_tag :article_id, article.id %>
+        <%= button_tag :type => "submit", class: 'like-button' do %>
+          <span class="fa-regular fa-heart"></span>
+            <%= article.likes.count %>
+        <% end %>
       <% end %>
     <% end %>
-  <% else %>
-    <%= form_with(model: current_user.likes.build, local: false) do |f| %>
-      <%= hidden_field_tag :article_id, article.id %>
-      <%= button_tag :type => "submit", class: 'like-button' do %>
-        <span class="fa-regular fa-heart"></span>
-          <%= article.likes.count %>
-      <% end %>
-    <% end %>
-  <% end %>
-</div>
+  </div>
+<% else %>
+  <div class="d-inline-block fw-normal">
+    <span class="fa-regular fa-heart"></span>
+      <%= article.likes.count %>
+  </div>
+<% end %>
