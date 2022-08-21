@@ -2,10 +2,10 @@
   <nav class="navbar">
     <a class="navbar-brand" href="/">F.LOG</a>
 
-    <div class="justify-content-end" id="navbarSupportedContent">
+    <div class="justify-content-end">
       <% if logged_in? %>
         <div class="btn-group">
-          <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><%= image_tag 'circle-user-solid.svg', size: '25x25' %></button>
+          <button type="button" class="btn dropdown-toggle fa-solid fa-circle-user fa-2x" data-bs-toggle="dropdown" aria-expanded="false"></button>
           <ul class="dropdown-menu dropdown-menu-end">
             <li class="dropdown-item"><%= link_to 'マイページ', user_path(current_user), class: 'nav-link' %></li>
             <li class="dropdown-item"><%= link_to '新規投稿', new_article_path, class: 'nav-link' %></li>
@@ -15,9 +15,10 @@
           </ul>
         </div>
       <% else %>
-        <ul class="navbar-nav">
-          <li class="nav-item"><%= link_to '会員登録', signup_path, class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to 'ログイン', login_path, class: 'nav-link' %></li>
+        <ul class="navbar-nav d-inline-block">
+          <% unless current_page?(login_path) || current_page?(signup_path) %>
+            <li class="nav-item fa-solid fa-right-to-bracket"><%= link_to ' ログイン', login_path %></li>
+          <% end %>
         </ul>
       <% end %>
     </div>
