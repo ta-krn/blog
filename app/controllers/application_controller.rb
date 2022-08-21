@@ -2,6 +2,17 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include Pagy::Backend
   
+  before_action :search
+  
+  def search
+    @search = params[:q]
+    @q = Tag.includes(:articles).ransack(params[:q])
+    @result = @q.result
+    if @result.present?
+      @articles = @result.first.articles
+    end
+  end
+  
   private
 
   def require_user_logged_in

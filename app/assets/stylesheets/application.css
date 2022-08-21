@@ -77,3 +77,23 @@
    font-weight: bold;
    padding: 8px 13px;
  }
+ 
+ /*タグ検索フォーム*/
+ .input-group {
+  border: 2px solid #2b3e4f;
+  border-radius: 20px;
+  padding: 4px 10px;
+  outline-offset: initial;
+ }
+ 
+ .search-form {
+   border: none;
+   outline: none;
+ }
+ 
+ .search-button {
+   background-color: #fff;
+   color: #2b3e4f;
+   padding: 0;
+   border: none;
+ }

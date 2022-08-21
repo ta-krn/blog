@@ -2,12 +2,8 @@ class ArticlesController < ApplicationController
   before_action :require_user_logged_in, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :correct_user, only: [:update, :destroy]
-  # before_action :set_q, only: [:index, :search]
 
   def index
-    @q = Tag.includes(:articles).ransack(params[:q])
-    # @q = Article.includes(:tags).ransack(params[:q])
-    @result = @q.result
     @pagy, @articles = pagy(Article.all.order(created_at: :desc), items: 3)
   end
   
@@ -61,14 +57,6 @@ class ArticlesController < ApplicationController
     @pagy, @articles = pagy(@tag.articles.all, items: 10)
   end
   
-  def search
-    # @q = Article.includes(:tags).ransack(params[:q])
-    @q = Tag.includes(:articles).ransack(params[:q])
-    @result = @q.result
-    p "====================#{Tag.where(tag_name: "7/3").first.articles.inspect}===================="
-    p "====================#{@result.articles.inspect}===================="
-  end
-  
   private
   
   def set_article
@@ -77,7 +65,7 @@ class ArticlesController < ApplicationController
 
   # Strong Parameter
   def article_params
-    params.require(:article).permit(:title, :content)
+    params.require(:article).permit(:title, :content, :image)
   end
   
   def correct_user

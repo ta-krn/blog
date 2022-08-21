@@ -3,6 +3,18 @@
     <a class="navbar-brand" href="/">F.LOG</a>
 
     <div class="justify-content-end">
+      <div class="d-inline-block">
+        <% unless current_page?(login_path) || current_page?(signup_path) %>
+          <%= search_form_for @q, url: search_path do |f| %>
+            <div class="input-group">
+              <%= f.text_field :tag_name_cont, placeholder:'タグ検索', class: 'search-form' %>
+              <%= button_tag type: 'submit', class: "search-button" do %>
+                <i class="fa-solid fa-magnifying-glass"></i>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
       <% if logged_in? %>
         <div class="btn-group">
           <button type="button" class="btn dropdown-toggle fa-solid fa-circle-user fa-2x" data-bs-toggle="dropdown" aria-expanded="false"></button>
