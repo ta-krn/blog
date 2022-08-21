@@ -14,3 +14,4 @@ ActiveStorage.start()
 
 //= require jquery
 //= require rails-ujs
+require('./preview')

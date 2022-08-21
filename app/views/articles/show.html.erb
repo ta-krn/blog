@@ -1,7 +1,16 @@
-<h2 class="mb-5 d-inline-block"><%= @article.title %></h2>
+<h2 class="mb-5 d-inline-block title"><%= @article.title %></h2>
   <span id="likes_button">
     <%= render 'likes/like_button', article: @article %>
   </span>
+  <span class="justify-content-end">
+    <%= link_to @article.user.name, user_path(@article.user) %>
+  </span>
+  
+  <div class="mb-5">
+    <% if @article.image? %>
+      <%= image_tag @article.image.url, class: "article-img" %>
+    <% end %>
+  </div>
 
   <div class="content mb-5">
     <%= simple_format(@article.content) %>

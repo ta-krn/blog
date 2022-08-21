@@ -4,6 +4,7 @@ class Article < ApplicationRecord
   has_many :like_articles, through: :likes, source: :article
   has_many :article_tags, dependent: :destroy
   has_many :tags, through: :article_tags
+  mount_uploader :image, ImageUploader
   
   validates :title, presence: true, length: { maximum: 255 }
   validates :content, presence: true
@@ -19,9 +20,4 @@ class Article < ApplicationRecord
       self.tags << inspected_tag
     end
   end
-  
-  # def self.search(search)
-    # return Article.all unless search
-    # Article.where(['tag_name LIKE ?', "%#{search}%"])
-  # end
 end
