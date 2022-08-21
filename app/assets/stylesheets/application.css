@@ -28,11 +28,7 @@
    color: inherit;
  }
  
-/* .navbar {
-   background-color: #2b3e4f;
- }
-*/
- 
+/*ナビバー*/
  .navbar-brand {
    font-family: 'Comfortaa', serif;
    font-weight: bold;
@@ -52,10 +48,32 @@
    color: inherit;
  }
  
+ .dropdown-toggle::after {
+   display: none;
+ }
+ 
+ .fa-circle-user:before {
+   color: #2b3e4f;
+ }
+ 
+ .btn:focus {
+  box-shadow: none;
+ }
+ 
  li {
   list-style: none;
 }
 
 .error_message {
   color: red;
+ }
+
+ /*ログインボタン*/
+ .nav-item {
+   background-color: #2b3e4f;
+   color: #fff;
+   border: 2px solid #2b3e4f;
+   border-radius: 20px;
+   font-weight: bold;
+   padding: 8px 13px;
  }
