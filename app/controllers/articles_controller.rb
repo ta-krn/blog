@@ -17,7 +17,8 @@ class ArticlesController < ApplicationController
   
   def create
     @article = current_user.articles.build(article_params)
-    tag_list = params[:article][:tag_names].split(/\s+|　/)
+    space_replaced_tags = params[:article][:tag_names].gsub("　" , " ")
+    tag_list = space_replaced_tags.split
     @article.tags_save(tag_list)
     if @article.save
       flash[:success] = '投稿されました'
@@ -34,7 +35,9 @@ class ArticlesController < ApplicationController
   end
   
   def update
-    tag_list = params[:article][:tag_names].split(nil)
+    space_replaced_tags = params[:article][:tag_names].gsub("　" , " ")
+    tag_list = space_replaced_tags.split
+    
     if @article.update(article_params)
       @article.tags_save(tag_list)
       flash[:success] = '更新されました'

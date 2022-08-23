@@ -100,3 +100,24 @@ h1 {
   width: 300px;
   height: 200px;
 }
+
+// 記事ページ：タグ
+.article-tag {
+  background-color: #2b3e4f;
+  color: #fff;
+  border: solid 1px;
+  border-radius: 20px;
+  padding: 3px 10px;
+  display: inline-block;
+	text-decoration: none;
+}
+
+.article-tag:hover {
+  color: #fff;
+  transform: scale(1.03);
+}
+
+// 検索結果：件数
+span.tag-count {
+  margin: 0 0 0 20px;
+}

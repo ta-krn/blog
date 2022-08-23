@@ -1,8 +1,9 @@
-<h2>＃<%= "#{@tag.tag_name}" %></h2>
+<h2 class="mb-4 d-inline-block">＃<%= "#{@tag.tag_name}" %></h2>
+<span class="fw-normal tag-count"><%= @articles.count %>件</span>
 
 <ul>
   <% @articles.each do |article| %>
-    <li><%= link_to article.title, article_path(article.id) %> / <%= link_to article.user.name, user_path(current_user.id) %></li>
+    <li><%= link_to article.title, article_path(article.id) %> / <%= link_to article.user.name, user_path(article.user) %></li>
   <% end %>
 </ul>
 <%== pagy_nav(@pagy) %>
