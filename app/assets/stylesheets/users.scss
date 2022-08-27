@@ -137,3 +137,32 @@ span {
   border-radius: 100px;
   overflow: hidden;
 }
+
+// ユーザーページ：タブ機能
+.tab {
+  flex-grow: 1;
+  padding: 5px 15px;
+  list-style: none;
+  text-align: center;
+  cursor: pointer;
+}
+
+.panel {
+  display: none;
+}
+.tab.is-active {
+  border-bottom: solid 3px #2b3e4f;
+}
+.panel.is-show {
+  display: block;
+}
+
+.tab-group li {
+  font-weight: bold;
+  float: left;
+  margin-bottom: 30px;
+}
+
+.tab-likes {
+  color: #2b3e4f;
+} 

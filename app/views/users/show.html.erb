@@ -52,12 +52,42 @@
     <div>
       <span><%= @count_followings %></span><a href="<%= followings_user_path(@user) %>">  フォロー</a>
       <span><%= @count_followers %></span><a href="<%= followers_user_path(@user) %>">  フォロワー</a>
-      <span><%= @count_like_articles %></span><a href="<%= like_articles_user_path(@user) %>">  いいね</a>
     </div>
 
-  <ul class="mt-3">
-    <% @articles.each do |article| %>
-      <li><%= link_to article.title, article_path(article.id) %> / <%= link_to article.user.name, user_path(article.user) %></li>
-    <% end %>
-  </ul>
+  <!--タブ-->
+    <div class="tab-panel">
+      <ul class="tab-group">
+        <li class="tab tab-A is-active">記事</li>
+        <li class="tab tab-B">タグ</li>
+        <li class="tab tab-C"><%= link_to 'いいね', like_articles_user_path(@user), remote: true, class: 'tab-likes' %></li>
+      </ul>
+
+      <!--タブコンテンツ-->
+      <div class="panel-group">
+        <div class="panel tab-A is-show">
+          <% if @articles.present? %>
+            <ul style="clear: both;">
+              <% @articles.each do |article| %>
+                <li><%= link_to article.title, article_path(article.id) %> / <%= link_to article.user.name, user_path(article.user) %></li>
+              <% end %>
+            </ul>
+          <% else %>
+            <div>
+              <p style="clear: both;">まだ投稿はありません</p>
+            </div>
+          <% end %>
+        </div>
+        <div class="panel tab-B" style="clear: both;"><!--ユーザーが使用したタグ一覧を表示--></div>
+        <div class="panel tab-C"  style="clear: both;">
+          <% if @like_articles.present? %>
+            <%= render 'users/like_articles', user: @user %>
+          <% else %>
+            <div>
+              <p style="clear: both;">いいねした投稿はありません</p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  
   <%== pagy_nav(@pagy) %>
