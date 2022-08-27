@@ -1,32 +1,44 @@
-<div class="user-icon">
-  <span class="fa-solid fa-circle-user fa-4x"></span>
+<div>
+<% if @user.image? %>
+  <%= image_tag @user.image.url, class: "user-img" %>
+<% else %>
+  <div class="fa-solid fa-circle-user fa-4x"></div>
+<% end %>
 </div>
 
-<h3 class="d-inline-flex align-items-center"><%= @user.name %></h3>
-
-<!-- Button trigger modal -->
-<div class="d-inline-flex align-items-center">
-  <% if logged_in? && current_user == @user %>
-    <button type="button" class="btn modal-edit" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      <span class="fa-solid fa-pen"></span>
-    </button>
+<h3 class="mt-2 d-inline-block"><%= @user.name %></h3>
+  <% if logged_in? %>
+    <div class="d-inline-block">
+      <%= render 'relationships/follow_button', user: @user %>
+    </div>
   <% end %>
-</div>
+
+  <!-- Button trigger modal -->
+  <div class="d-inline-flex">
+    <% if logged_in? && current_user == @user %>
+      <button type="button" class="btn modal-edit" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <span class="fa-solid fa-gear"></span>
+      </button>
+    <% end %>
+  </div>
   
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <span class="close justify-content-end" data-bs-dismiss="modal">×</span>
-        <div class="mb-2 text-center modal-body">
-          <div class="user-icon">
-            <span class="mb-2 fa-solid fa-circle-user fa-4x"></span>
-          </div>
+        <div class="my-2 text-center modal-body">
+          <% if @user.image? %>
+            <%= image_tag @user.image.url, class: "user-img" %>
+          <% else %>
+            <span class="mb-3 text-center fa-solid fa-circle-user fa-4x"></span>
+          <% end %>
           <div>
             <%= form_with model: @user do |f| %>
             <div class="form_group">
-              <%= f.text_field :name, autocomplete: 'off', autofocus: true, placeholder: @user.name, class:'rename-form' %>
-              <div class="mt-5 mb-3">
+              <%= f.file_field :image %>
+              <%= f.text_field :name, autocomplete: 'off', autofocus: true, class:"rename-form" %>
+              <div class="my-4">
                 <%= f.submit '保存', class: "edit-user-button" %>
               </div>
             <% end %>
@@ -37,9 +49,6 @@
     </div>
   </div>
   
-  <div class="d-inline-block">
-    <%= render 'relationships/follow_button', user: @user %>
-  </div>
     <div>
       <span><%= @count_followings %></span><a href="<%= followings_user_path(@user) %>">  フォロー</a>
       <span><%= @count_followers %></span><a href="<%= followers_user_path(@user) %>">  フォロワー</a>
