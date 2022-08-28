@@ -1,4 +1,4 @@
-<div>
+<div class="mb-1">
 <% if @user.image? %>
   <%= image_tag @user.image.url, class: "user-img" %>
 <% else %>
@@ -6,7 +6,7 @@
 <% end %>
 </div>
 
-<h3 class="mt-2 d-inline-block"><%= @user.name %></h3>
+<h3 class="d-inline-block"><%= @user.name %></h3>
   <% if logged_in? %>
     <div class="d-inline-block">
       <%= render 'relationships/follow_button', user: @user %>
@@ -27,16 +27,23 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <span class="close justify-content-end" data-bs-dismiss="modal">×</span>
-        <div class="my-2 text-center modal-body">
-          <% if @user.image? %>
-            <%= image_tag @user.image.url, class: "user-img" %>
-          <% else %>
-            <span class="mb-3 text-center fa-solid fa-circle-user fa-4x"></span>
-          <% end %>
+        <div class="text-center modal-body">
+          <div class="mb-2">
+            <% if @user.image? %>
+              <%= image_tag @user.image.url, class: "modal-user-img" %>
+            <% else %>
+              <span class="text-center fa-solid fa-circle-user fa-4x"></span>
+            <% end %>
+          </div>
           <div>
             <%= form_with model: @user do |f| %>
             <div class="form_group">
-              <%= f.file_field :image %>
+              <p>
+                <%= f.label :image do %>
+                  <span class="form-img fa-solid fa-camera">ファイルを選択</span>
+                <% end %>
+                <%= f.file_field :image, class: "form-user-img", style: "display:none;" %>
+              </p>
               <%= f.text_field :name, autocomplete: 'off', autofocus: true, class:"rename-form" %>
               <div class="my-4">
                 <%= f.submit '保存', class: "edit-user-button" %>

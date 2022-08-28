@@ -130,8 +130,19 @@ span {
   cursor: pointer;
 }
 
+.modal-body {
+  padding: 0 0 20px 0;
+}
+
 // ユーザーアイコン
 .user-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.modal-user-img {
   width: 70px;
   height: 70px;
   border-radius: 100px;
