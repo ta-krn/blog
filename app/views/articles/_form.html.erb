@@ -26,9 +26,9 @@
   </p>
   <p>
     <% if @article.image.present? %>
-      <%= image_tag @article.image.url, id: :img_prev %>
+      <%= image_tag @article.image.url, class: "img_prev" %>
     <% else %>
-      <%= image_tag "noimage.png", id: :img_prev %>
+      <%= image_tag "noimage.png", class: "img_prev" %>
     <% end %>
   </p>
 

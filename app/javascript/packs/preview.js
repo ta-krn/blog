@@ -1,17 +1,12 @@
-/*global $*/
-document.addEventListener("turbolinks:load", function() {
-  $(function() {
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-        let reader = new FileReader();
-        reader.onload = function (e) {
-    $('#img_prev').attr('src', e.target.result);
-        }
-        reader.readAsDataURL(input.files[0]);
-        }
-    }
-    $(".form-article-img").change(function(){
-        readURL(this);
+window.addEventListener('load', () => {
+    const uploader = document.querySelector('.form-article-img');
+    uploader.addEventListener('change', (e) => {
+      const file = uploader.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        const image = reader.result;
+        document.querySelector('.img_prev').setAttribute('src', image);
+      }
     });
-  });
-})
+});
